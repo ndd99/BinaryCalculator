@@ -43,4 +43,14 @@ public class LogicTester {
         int result=BinaryCalcLogic.squareroot(0);
         assertEquals(0,result);
     }
+    @Test
+    public void testAddition(){
+        int result = BinaryCalcLogic.addition(5,7);
+        assertEquals(12, result);
+    }
+    @Test
+    public void testSubtraction(){
+        int result = BinaryCalcLogic.subtraction(5,7);
+        assertEquals(-2, result);
+    }
 }

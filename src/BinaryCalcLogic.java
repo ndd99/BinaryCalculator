@@ -5,6 +5,7 @@ public class BinaryCalcLogic {
     public static String toBinary(int decimalNum){
         return Integer.toBinaryString(decimalNum);
     }
+
     public static int square(int decimalNum){
         return Math.round(decimalNum * decimalNum);
     }
@@ -14,5 +15,11 @@ public class BinaryCalcLogic {
         } else {
             return (int) Math.round(Math.sqrt(decimalNum));
         }
+
+    public static int addition(int Num1, int Num2){
+        return Num1 + Num2;
+    }
+    public static int subtraction(int Num1, int Num2){
+        return Num1 - Num2;
     }
 }
