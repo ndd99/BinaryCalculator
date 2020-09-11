@@ -29,4 +29,8 @@ public class BinaryCalcLogic {
     public static int subtraction (int Num1, int Num2){
         return Num1 - Num2;
     }
+
+    public static int division(int Num1, int Num2){return Num1 / Num2;}
+    public static int multiplication(int Num1, int Num2){return Num1 * Num2;}
+
 }
