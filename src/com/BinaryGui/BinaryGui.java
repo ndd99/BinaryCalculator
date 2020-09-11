@@ -12,8 +12,8 @@ public class BinaryGui extends JPanel {
         JButton binary0 = new JButton("0");
         JButton binary1 = new JButton("1");
         JButton convert = new JButton("Convert");
-        JLabel jcomp4 = new JLabel("Binary Calculator");
-        JTextField jcomp5 = new JTextField(10);
+        JLabel title = new JLabel("Binary Calculator");
+        JTextField display = new JTextField(10);
         JButton plus = new JButton("+");
         JButton minus = new JButton("-");
         JButton times = new JButton("X");
@@ -30,8 +30,8 @@ public class BinaryGui extends JPanel {
         add (binary0);
         add (binary1);
         add (convert);
-        add (jcomp4);
-        add (jcomp5);
+        add (title);
+        add (display);
         add (plus);
         add (minus);
         add (times);
@@ -44,8 +44,8 @@ public class BinaryGui extends JPanel {
         binary0.setBounds (25, 60, 50, 25);
         binary1.setBounds (85, 60, 50, 25);
         convert.setBounds (60, 155, 95, 25);
-        jcomp4.setBounds (60, 5, 100, 25);
-        jcomp5.setBounds (60, 30, 100, 25);
+        title.setBounds (60, 5, 100, 25);
+        display.setBounds (60, 30, 100, 25);
         plus.setBounds (25, 90, 50, 25);
         minus.setBounds (85, 90, 50, 25);
         times.setBounds (25, 120, 50, 25);
@@ -53,6 +53,22 @@ public class BinaryGui extends JPanel {
         sqrt.setBounds (145, 60, 50, 25);
         exponent.setBounds (145, 90, 50, 25);
         equals.setBounds (145, 120, 50, 25);
+
+
+        binary0.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+"0");
+            }
+        });
+        plus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+" + ");
+            }
+        });
+
+        
     }
 
 
