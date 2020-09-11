@@ -63,4 +63,14 @@ public class LogicTester {
         int result = BinaryCalcLogic.subtraction(5,7);
         assertEquals(-2, result);
     }
+    @Test
+    public void testDivision(){
+        int result = BinaryCalcLogic.division(20,5);
+        assertEquals(4, result);
+    }
+    @Test
+    public void testMultiplication(){
+        int result = BinaryCalcLogic.multiplication(6,3);
+        assertEquals(18, result);
+    }
 }
