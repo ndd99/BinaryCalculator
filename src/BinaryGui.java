@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class BinaryGui extends JPanel {
 
@@ -13,6 +14,7 @@ public class BinaryGui extends JPanel {
         JButton convertB = new JButton("ConvertB");
         JLabel title = new JLabel("Binary Calculator");
         JTextField display = new JTextField(10);
+        JTextField display2 = new JTextField(10);
         JButton plus = new JButton("+");
         JButton minus = new JButton("-");
         JButton times = new JButton("X");
@@ -20,9 +22,11 @@ public class BinaryGui extends JPanel {
         JButton sqrt = new JButton("√");
         JButton exponent = new JButton("x²");
         JButton equals = new JButton("=");
+        JButton backspace = new JButton("<---");
+        JButton clear = new JButton("Clear");
 
         //adjust size and set layout
-        setPreferredSize (new Dimension (200, 200));
+        setPreferredSize (new Dimension (200, 300));
         setLayout (null);
 
         //add components
@@ -32,6 +36,7 @@ public class BinaryGui extends JPanel {
         add (convertB);
         add (title);
         add (display);
+        add (display2);
         add (plus);
         add (minus);
         add (times);
@@ -39,21 +44,26 @@ public class BinaryGui extends JPanel {
         add (sqrt);
         add (exponent);
         add (equals);
+        add (clear);
+        add(backspace);
 
         //set component bounds (only needed by Absolute Positioning)
-        binary0.setBounds (25, 60, 50, 25);
-        binary1.setBounds (85, 60, 50, 25);
-        convertD.setBounds (15, 155, 90, 25);
-        convertB.setBounds (105, 155, 90, 25);
+        binary0.setBounds (25, 120, 50, 25);
+        binary1.setBounds (85, 120, 50, 25);
+        convertD.setBounds (15, 215, 90, 25);
+        convertB.setBounds (105, 215, 90, 25);
         title.setBounds (60, 5, 100, 25);
         display.setBounds (60, 30, 100, 25);
-        plus.setBounds (25, 90, 50, 25);
-        minus.setBounds (85, 90, 50, 25);
-        times.setBounds (25, 120, 50, 25);
-        divide.setBounds (85, 120, 50, 25);
-        sqrt.setBounds (145, 60, 50, 25);
-        exponent.setBounds (145, 90, 50, 25);
-        equals.setBounds (145, 120, 50, 25);
+        display2.setBounds (60, 90, 100, 25);
+        plus.setBounds (25, 150, 50, 25);
+        minus.setBounds (85, 150, 50, 25);
+        times.setBounds (25, 180, 50, 25);
+        divide.setBounds (85, 180, 50, 25);
+        sqrt.setBounds (145, 120, 50, 25);
+        exponent.setBounds (145, 150, 50, 25);
+        equals.setBounds (145, 180, 50, 25);
+        clear.setBounds (15, 250, 90, 25);
+        backspace.setBounds (105, 250, 90, 25);
 
         //Action Listeners
         binary0.addActionListener(new ActionListener() {
@@ -96,26 +106,26 @@ public class BinaryGui extends JPanel {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String contents = display.getText();
-                String[] arrOfConts = contents.split(" ", 2);
-                if (arrOfConts [1] == "+" ){
+                String[] arrOfConts = contents.split(" ");
+                if (Objects.equals(arrOfConts[1], "+")){
                     int Num1=((BinaryCalcLogic.toDecimal(arrOfConts [0])));
                     int Num2=((BinaryCalcLogic.toDecimal(arrOfConts [2])));
-                    display.setText(Integer.toString(BinaryCalcLogic.addition(Num1, Num2)));
+                    display2.setText(BinaryCalcLogic.toBinary(BinaryCalcLogic.addition(Num1, Num2)));
                 }
-                else if (arrOfConts [1] == "-" ){
+                else if (Objects.equals(arrOfConts[1], "-")){
                     int Num1=((BinaryCalcLogic.toDecimal(arrOfConts [0])));
                     int Num2=((BinaryCalcLogic.toDecimal(arrOfConts [2])));
-                    display.setText(Integer.toString(BinaryCalcLogic.subtraction(Num1, Num2)));
+                    display2.setText(Integer.toString(BinaryCalcLogic.subtraction(Num1, Num2)));
                 }
-                else if (arrOfConts [1] == "X" ){
+                else if (Objects.equals(arrOfConts[1], "X")){
                     int Num1=((BinaryCalcLogic.toDecimal(arrOfConts [0])));
                     int Num2=((BinaryCalcLogic.toDecimal(arrOfConts [2])));
-                    display.setText(Integer.toString(BinaryCalcLogic.multiplication(Num1, Num2)));
+                    display2.setText(Integer.toString(BinaryCalcLogic.multiplication(Num1, Num2)));
                 }
-                else if (arrOfConts [1] == "÷" ){
+                else if (Objects.equals(arrOfConts[1], "÷")){
                     int Num1=((BinaryCalcLogic.toDecimal(arrOfConts [0])));
                     int Num2=((BinaryCalcLogic.toDecimal(arrOfConts [2])));
-                    display.setText(Integer.toString(BinaryCalcLogic.division(Num1, Num2)));
+                    display2.setText(Integer.toString(BinaryCalcLogic.division(Num1, Num2)));
                 }
 
             }
@@ -123,32 +133,46 @@ public class BinaryGui extends JPanel {
         convertD.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String contents = display.getText();
-                display.setText(Integer.toString(BinaryCalcLogic.toDecimal(contents)));
+                String contents = display2.getText();
+                display2.setText(Integer.toString(BinaryCalcLogic.toDecimal(contents)));
             }
         });
         convertB.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                String contents = display.getText();
+                String contents = display2.getText();
                 int i=Integer.parseInt(contents);
-                display.setText(BinaryCalcLogic.toBinary(i));
+                display2.setText(BinaryCalcLogic.toBinary(i));
             }
         });
         exponent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String contents = display.getText();
-                int i=Integer.parseInt(contents);
-                display.setText(Integer.toString(BinaryCalcLogic.square(i)));
+                int i= BinaryCalcLogic.square(BinaryCalcLogic.toDecimal(contents));
+                display2.setText(BinaryCalcLogic.toBinary(i));
             }
         });
         sqrt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 String contents = display.getText();
-                int i=Integer.parseInt(contents);
-                display.setText(Integer.toString(BinaryCalcLogic.squareRoot(i)));
+                int i= BinaryCalcLogic.squareRoot(BinaryCalcLogic.toDecimal(contents));
+                display.setText(BinaryCalcLogic.toBinary(i));
+            }
+        });
+        backspace.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String contents = display.getText();
+                display.setText(contents.substring(0,contents.length()-1));
+            }
+        });
+        clear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display2.setText("");
+                display.setText("");
             }
         });
 
