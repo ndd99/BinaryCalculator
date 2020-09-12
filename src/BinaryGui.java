@@ -1,9 +1,7 @@
-package com.BinaryGui;
-
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
-import javax.swing.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BinaryGui extends JPanel {
 
@@ -54,11 +52,17 @@ public class BinaryGui extends JPanel {
         exponent.setBounds (145, 90, 50, 25);
         equals.setBounds (145, 120, 50, 25);
 
-
+        //Action Listeners
         binary0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 display.setText(display.getText()+"0");
+            }
+        });
+        binary1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+"1");
             }
         });
         plus.addActionListener(new ActionListener() {
@@ -67,8 +71,54 @@ public class BinaryGui extends JPanel {
                 display.setText(display.getText()+" + ");
             }
         });
+        minus.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+" - ");
+            }
+        });
+        times.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+" X ");
+            }
+        });
+        divide.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                display.setText(display.getText()+" ÷ ");
+            }
+        });
+        equals.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String contents = display.getText();
+            }
+        });
+        convert.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String contents = display.getText();
+                display.setText(Integer.toString(BinaryCalcLogic.toDecimal(contents)));
+            }
+        });
+        exponent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String contents = display.getText();
+                int i=Integer.parseInt(contents);
+                display.setText(Integer.toString(BinaryCalcLogic.square(i)));
+            }
+        });
+        sqrt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String contents = display.getText();
+                int i=Integer.parseInt(contents);
+                display.setText(Integer.toString(BinaryCalcLogic.squareRoot(i)));
+            }
+        });
 
-        
     }
 
 
